@@ -34,9 +34,9 @@ class MeowController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $meows)
+    public function show(string $id)
     {
-        //
+        return 'Message ' . $id;
     }
 
     /**
