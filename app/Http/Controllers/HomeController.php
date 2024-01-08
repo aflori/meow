@@ -8,7 +8,7 @@ use Illuminate\View\View;
 
 class HomeController extends Controller
 {
-    public function show() {
+    public function show(): string {
         return 'Homepage';
     }
 }
