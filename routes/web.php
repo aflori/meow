@@ -14,13 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return '';
 });
 
 Route::get('/meows', function(){
-    return view('welcome');
+    return 'Liste des messages';
 });
 
 Route::get('/meows/{id}', function(string $id){
-    return view('welcome');
+    return 'Messages '.$id;
 });
