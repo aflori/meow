@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function () {
-    return view('personnalWelcome');
+Route::get('/meows', function(){
+    return view('welcome');
+});
+
+Route::get('/meows/{id}', function(string $id){
+    return view('welcome');
 });
