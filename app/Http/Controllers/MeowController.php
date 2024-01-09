@@ -37,7 +37,7 @@ class MeowController extends Controller
      */
     public function show(string $id)
     {
-        return 'Message ' . $id;
+        return View("MeowDetails", ['idMeow' => $id]);
     }
 
     /**
