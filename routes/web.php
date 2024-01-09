@@ -19,4 +19,4 @@ Route::get('/', [HomeController::class, 'show']);
 
 Route::get('/meows', [MeowController::class, 'index']);
 
-Route::get('/meows/{id}', [MeowController::class, 'show'])->whereNumber('id');
+Route::get('/meows/{id}', [MeowController::class, 'show']);
