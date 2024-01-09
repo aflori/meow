@@ -9,6 +9,6 @@ use Illuminate\View\View;
 class HomeController extends Controller
 {
     public function show(): string {
-        return 'Homepage';
+        return View("homepage");
     }
 }
