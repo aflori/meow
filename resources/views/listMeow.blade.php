@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="fr">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title> Meow </title>
-
     </head>
     <body>
-        <h1> Hello world from laravel v10.x (PHP v8.x.x) </h1>
+        <h1> Liste des messages </h1>
     </body>
 </html>

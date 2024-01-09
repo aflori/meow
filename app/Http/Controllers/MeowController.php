@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 // use App\Models\meows;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class MeowController extends Controller
 {
@@ -12,7 +13,7 @@ class MeowController extends Controller
      */
     public function index()
     {
-        return 'Liste des messages';
+        return View("listMeow");
     }
 
     /**
