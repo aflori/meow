@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('coments', function (Blueprint $table) {
-            $table->uuid('id');
+            $table->uuid();
             $table->string("content", 300)->nullable(false);
             $table->timestamp("creation_date")->nullable(true);
             $table->timestamp("modification_date")->nullable(true);
             $table->uuid('meows_id');
 
-            $table->primary('id');
+            // $table->primary('id');
             $table->foreign('meows_id')->references('id')->on('meows');
         });
     }

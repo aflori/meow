@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('meows', function (Blueprint $table) {
             $table->primary('id');
-            $table->uuid('id');
+            $table->uuid('id')->default(DB::raw('UUID()'));
             $table->string("content", 300)->nullable(false);
+            // $table->timestamps();
             $table->timestamp("creation_date")->nullable(true);
             $table->timestamp("modification_date")->nullable(true);
 
