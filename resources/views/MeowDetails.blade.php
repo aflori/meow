@@ -9,6 +9,6 @@
     <body>
         <h1> Fiche du message <?= $idMeow ?> </h1>
         <p> <?= $message ?> </p>
-        <pre> <?= $meow ?> </pre>
+        <small> <?= $meow ?> </small>
     </body>
 </html>

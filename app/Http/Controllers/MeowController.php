@@ -37,7 +37,9 @@ class MeowController extends Controller
      */
     public function show(string $id)
     {
-        $meow = Meow::where('id', $id)->first(); //getting the first element of the list satisfying the condition
+        // $meow = Meow::where('id', $id)->first(); //getting the first element of the list satisfying the condition
+        $meow = Meow::find($id);
+        $meow->user; // initializing the field for printing view
         $message = $meow['content'];
         return View("MeowDetails", ['idMeow' => $id, 'message' => $message, 'meow' => $meow]);
     }
