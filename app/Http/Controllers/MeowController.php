@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-// use App\Models\meows;
+use App\Models\Meow;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -37,7 +37,9 @@ class MeowController extends Controller
      */
     public function show(string $id)
     {
-        return View("MeowDetails", ['idMeow' => $id]);
+        $meow = Meow::where('id', $id)->first(); //getting the first element of the list satisfying the condition
+        $message = $meow['content'];
+        return View("MeowDetails", ['idMeow' => $id, 'message' => $message, 'meow' => $meow]);
     }
 
     /**

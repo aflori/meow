@@ -7,6 +7,8 @@
         <title> Meow </title>
     </head>
     <body>
-        <h1> Fiche d’un message <?= $idMeow ?> </h1>
+        <h1> Fiche du message <?= $idMeow ?> </h1>
+        <p> <?= $message ?> </p>
+        <pre> <?= $meow ?> </pre>
     </body>
 </html>
