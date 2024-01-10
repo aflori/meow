@@ -1,8 +1,12 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
+//next 2 import were removed with breeze install
+// use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MeowController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,9 +18,23 @@ use App\Http\Controllers\MeowController;
 |
 */
 
-Route::get('/', [HomeController::class, 'show']);
-
-
+// next route were removed on breeze install
+// Route::get('/', [HomeController::class, 'show']);
 Route::get('/meows', [MeowController::class, 'index']);
-
 Route::get('/meows/{id}', [MeowController::class, 'show']);
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
