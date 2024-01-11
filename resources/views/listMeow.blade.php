@@ -8,5 +8,11 @@
     </head>
     <body>
         <h1> Liste des messages </h1>
+        <?php foreach($listComments as $message): ?>
+        <div>
+            <p> comments writen by <?= $message->user->name ?>. </p>
+            <small> id: <?= $message->id ?> </small>
+        </div>
+        <?php endforeach; ?>
     </body>
 </html>

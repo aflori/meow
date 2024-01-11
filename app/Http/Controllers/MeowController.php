@@ -13,7 +13,8 @@ class MeowController extends Controller
      */
     public function index()
     {
-        return View("listMeow");
+        $meowList = Meow::take(15)->orderBy('content')->get();
+        return View("listMeow", ["listComments" => $meowList]);
     }
 
     /**
@@ -39,9 +40,8 @@ class MeowController extends Controller
     {
         // $meow = Meow::where('id', $id)->first(); //getting the first element of the list satisfying the condition
         $meow = Meow::find($id);
-        $meow->user; // initializing the field for printing view
         $message = $meow['content'];
-        return View("MeowDetails", ['idMeow' => $id, 'message' => $message, 'meow' => $meow]);
+        return View("MeowDetails", ['idMeow' => $id, 'message' => $message]);
     }
 
     /**
