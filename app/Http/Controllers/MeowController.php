@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Meow;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Gate;
+// use Illuminate\Support\Facades\Auth;
 
 class MeowController extends Controller
 {
@@ -13,8 +15,11 @@ class MeowController extends Controller
      */
     public function index()
     {
-        $meowList = Meow::take(15)->orderBy('content')->get();
-        return View("listMeow", ["listComments" => $meowList]);
+        if(Gate::allows('meows-access')) {
+            $meowList = Meow::take(15)->get();
+            return View("listMeow", ["listComments" => $meowList]);
+        }
+        return redirect('/');
     }
 
     /**
@@ -36,12 +41,18 @@ class MeowController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request, string $id)
     {
-        // $meow = Meow::where('id', $id)->first(); //getting the first element of the list satisfying the condition
-        $meow = Meow::find($id);
-        $message = $meow['content'];
-        return View("MeowDetails", ['idMeow' => $id, 'message' => $message]);
+        if(Gate::allows('meows-access')) {
+            $meow = Meow::find($id);
+            $message = $meow->content;
+            //call to 'seeMeows' policies associated to model Meow
+            if ($request->user()->cannot('seeMeows', $meow)) {
+                $message = "Unavailable service";
+            }
+            return View("MeowDetails", ['idMeow' => $id, 'message' => $message]);
+        }
+        return redirect('/');
     }
 
     /**
