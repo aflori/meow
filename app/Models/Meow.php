@@ -13,6 +13,16 @@ class Meow extends Model
     use HasFactory, HasUuids;
 
     /**
+     * The attributes that are mass assignable
+     *
+     */
+    protected $fillable = [
+        'content',
+        'creation_date',
+        'modification_date',
+        'user_id'
+    ];
+    /**
      * Indicates if the model should be timestamped.
      *
      * @var bool

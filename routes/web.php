@@ -21,7 +21,11 @@ use App\Http\Controllers\MeowController;
 // next route were removed on breeze install
 // Route::get('/', [HomeController::class, 'show']);
 Route::get('/meows', [MeowController::class, 'index']);
-Route::get('/meows/{id}', [MeowController::class, 'show']);
+Route::get('/meow/{meow}', [MeowController::class, 'show']);
+Route::post('/meow', [MeowController::class, 'create']);
+Route::put('/meow', [MeowController::class, 'edit']);
+Route::patch('/meow/{meow}', [MeowController::class, 'update']);
+Route::delete('/meow/{meow}', [MeowController::class, 'destroy']);
 
 Route::get('/', function () {
     return view('welcome');

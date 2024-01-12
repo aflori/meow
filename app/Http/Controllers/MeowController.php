@@ -25,9 +25,24 @@ class MeowController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request): string
     {
-        //
+        $request->validate([
+            'content' => 'required|max:300',
+            'creation_date' => 'required',
+            'modification_date' => 'required',
+            'user_id' => 'required'
+        ]);
+
+        $newElement = new Meow;
+        $newElement->content = $request->content;
+        $newElement->creation_date = $request->creation_date;
+        $newElement->modification_date = $request->modification_date;
+        $newElement->user_id = $request->user_id;
+
+        $newElement->save();
+        // dd($newElement->toArray());
+        return response()->json($newElement->toArray(), 201);
     }
 
     /*
@@ -35,24 +50,28 @@ class MeowController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        var_dump($request);
+        return "store";
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Request $request, string $id)
+    public function show(Request $request, Meow $meow)
     {
         if(Gate::allows('meows-access')) {
-            $meow = Meow::find($id);
+            // $meow = Meow::find($id);
             $message = $meow->content;
             //call to 'seeMeows' policies associated to model Meow
             if ($request->user()->cannot('seeMeows', $meow)) {
                 $message = "Unavailable service";
             }
-            return View("MeowDetails", ['idMeow' => $id, 'message' => $message]);
+            return response()->json([
+                "message" => 'aaaa'
+            ]);
+            // return View("MeowDetails", ['idMeow' => $meow->id, 'message' => $message]);
         }
-        return redirect('/');
+        return csrf_token();
     }
 
     /**
@@ -60,24 +79,41 @@ class MeowController extends Controller
      */
     public function edit(int $meows)
     {
-        //
+        var_dump($request);
+        return "edit";
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, int $meows)
+    public function update(Request $request, Meow $meow)
     {
-        //
+        $request->validate([
+            'content' => 'required|max:300',
+            'creation_date' => 'required',
+            'modification_date' => 'required',
+            'user_id' => 'required'
+        ]);
+
+        $meow->content = $request->content;
+        $meow->creation_date = $request->creation_date;
+        $meow->modification_date = $request->modification_date;
+        $meow->user_id = $request->user_id;
+
+        $meow->save();
+        // dd($meow->toArray());
+        return response()->json($meow->toArray(), 202);
     }
 
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $meows)
+    public function destroy(Meow $meow)
     {
-        //
+        // var_dump($request);
+        $meow->delete();
+        return response()->json($meow->toArray());
     }
 
 }
